@@ -1,33 +1,26 @@
-import React from 'react'
-import "./post.css"
-import postImage from "../../images/postImage.png"
+import "./post.css";
+import { Link } from "react-router-dom";
 
-export default function Post() {
+export default function Post({ post }) {
+  const PF = "http://localhost:5000/images/";  // publish image folder
   return (
     <div className="post">
-        <img className="postImage" src={postImage} alt="" />
-        <div className="postInfo">
-            <div className="postCategories">
-                <span className="postCategory">Music</span>
-                <span className="postCategory">Life</span>
-            </div>
-            <span className="postTitle">Lorem ipsum dolor sit amet.</span>
-            <hr />
-            <span className="postDate">1 hour ago</span>
+      {post.photo && <img className="postImg" src={PF + post.photo} alt="" />}
+      <div className="postInfo">
+        <div className="postCats">
+          {post.categories.map((c) => (
+            <span className="postCat">{c.name}</span>
+          ))}
         </div>
-        <p className="postDescription">Lorem, ipsum dolor sit amet consectetur 
-        adipisicing elit. Accusamus nostrum odio delectus eius ratione, sunt 
-        eligendi labore temporibus! Fuga aliquam soluta corporis nemo explicabo 
-        magnam quidem iste vel, iure at.
-        Lorem, ipsum dolor sit amet consectetur 
-        adipisicing elit. Accusamus nostrum odio delectus eius ratione, sunt 
-        eligendi labore temporibus! Fuga aliquam soluta corporis nemo explicabo 
-        magnam quidem iste vel, iure at
-        Lorem, ipsum dolor sit amet consectetur 
-        adipisicing elit. Accusamus nostrum odio delectus eius ratione, sunt 
-        eligendi labore temporibus! Fuga aliquam soluta corporis nemo explicabo 
-        magnam quidem iste vel, iure at
-        </p>
+        <Link to={`/post/${post._id}`} className="link">
+          <span className="postTitle">{post.title}</span>
+        </Link>
+        <hr />
+        <span className="postDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
+      </div>
+      <p className="postDesc">{post.desc}</p>
     </div>
-  )
+  );
 }

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
+    // username must be lowercase
     username: {
       type: String,
       required: true,

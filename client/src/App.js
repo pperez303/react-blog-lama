@@ -1,15 +1,20 @@
+import Home from "./pages/home/Home";
 import TopBar from "./components/topbar/TopBar";
-import Home from "./pages/home/Home.jsx";
-import Single from "./pages/single/Single.jsx";
-import Write from "./pages/write/Write.jsx";
-import Settings from "./pages/settings/Settings.jsx";
-import Login from "./pages/login/Login.jsx";
-import Register from "./pages/register/Register.jsx";
+import Single from "./pages/single/Single";
+import Write from "./pages/write/Write";
+import Settings from "./pages/settings/Settings";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 function App() {
   // Psuedo user
-  const user = false;
+  //const user = false;
+
+  const { user } = useContext(Context);
+  console.log(user);
   return (
     <Router>
       <TopBar />
@@ -21,11 +26,12 @@ function App() {
           path="/register"
           element={user ? <Home /> : <Register />}
         />
-        <Route exact path="/write" element={user ? <Register /> : <Write />} />
+        <Route exact path="/write" element={user ? <Write /> : <Register />} />
+        {/* <Route path="/write">{user ? <Write /> : <Register />}</Route> */}
         <Route
           exact
           path="/settings"
-          element={user ? <Register /> : <Settings />}
+          element={user ? <Settings /> : <Register />}
         />
         <Route exact path="/post/:postId" element={<Single />} />
       </Routes>

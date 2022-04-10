@@ -2,12 +2,12 @@
   padding-top: 50px;
 }
 
-.writeImage {
+.writeImg {
   margin-left: 150px;
   width: 70vw;
   height: 250px;
   border-radius: 10px;
-  /* object-fit: cover; */
+  object-fit: cover;
 }
 
 .writeForm {
@@ -54,9 +54,9 @@
   top: 20px;
   right: 50px;
   color: white;
-  background: teal;
+  background-color: teal;
   padding: 10px;
-  bottom: none;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;

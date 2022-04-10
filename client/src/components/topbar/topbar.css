@@ -29,11 +29,12 @@
   cursor: pointer;
 }
 
-.topImage {
+.topImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .topList {
@@ -51,9 +52,9 @@
   cursor: pointer;
 }
 
-.searchIcon {
+.topSearchIcon {
   font-size: 18px;
   color: #666;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 15px;
 }

@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
-// UPDATE-------------------------------------------------------------------
+//UPDATE
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
@@ -23,19 +23,17 @@ router.put("/:id", async (req, res) => {
       res.status(500).json(err);
     }
   } else {
-    res.status(401).json("You can only update your account.");
+    res.status(401).json("You can update only your account!");
   }
 });
 
-// DELETE--------------------------------------------------------------------
+//DELETE
 router.delete("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     try {
       const user = await User.findById(req.params.id);
       try {
-        // delete all posts where the username is equal to the username retreived by the User.findById function.
         await Post.deleteMany({ username: user.username });
-        // delete the user account where user id in the User table is equal to the id in the endpoint.
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json("User has been deleted...");
       } catch (err) {
@@ -49,15 +47,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// read--------------------------------------------------------------------
+//GET USER
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    //hide the password
     const { password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (err) {
-    res.status(404).json("User not found");
+    res.status(500).json(err);
   }
 });
 
