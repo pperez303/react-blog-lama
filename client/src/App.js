@@ -14,7 +14,7 @@ function App() {
   //const user = false;
 
   const { user } = useContext(Context);
-  console.log(user);
+  //console.log(user);
   return (
     <Router>
       <TopBar />
