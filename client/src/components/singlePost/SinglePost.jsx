@@ -4,7 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import parse from "react-html-parser";
 import "./singlepost.css";
+import "@ckeditor/ckeditor5-theme-lark"
+
 
 export default function SinglePost() {
   const location = useLocation();
@@ -14,6 +19,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [postbody, setPostBody] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
@@ -22,6 +28,11 @@ export default function SinglePost() {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      //setPostBody(res.data.postbody);
+      //console.log(res)
+      // test postbody-----------------------------------------
+      setPostBody(res.data.postbody)
+      // test postbody------------------------------------------
     };
     getPost();
   }, [path]);
@@ -41,9 +52,24 @@ export default function SinglePost() {
         username: user.username,
         title,
         desc,
+        // test postbody
+        postbody
+        // test postbody
       });
       setUpdateMode(false)
     } catch (err) {}
+  };
+
+  const editChange = (e, editor) => {
+    const data = editor.getData()
+     setPostBody(data)
+  };
+
+  const handleCKeditorState = (e, editor) => {
+    const data = editor.getData();
+    console.log("from SinglePost - hello");
+    console.log(data);
+    setPostBody(data)
   };
 
   return (
@@ -96,12 +122,47 @@ export default function SinglePost() {
           />
         ) : (
           <p className="singlePostDesc">{desc}</p>
+          
+        )}
+
+        {updateMode ? (
+          <div className="ckeditor">
+            <label>Content</label>
+              <CKEditor
+                editor={ClassicEditor}
+                onReady={(editor) => {
+                  console.log("editor is ready", editor);
+                }}
+                data={postbody}
+                config={{
+                  ckfinder: { uploadUrl: "http://localhost:5000/api/ckloads/uploads" },
+                  types: ['png', 'jpeg']
+                }}
+                onChange={handleCKeditorState}
+                // onChange={editChange}
+              />
+         </div>
+          // <textarea
+          //   className="singlePostBodyInput"  
+          //   value={postbody}
+          //   onChange={(e) => setPostBody(e.target.value)}
+          // />
+        ) : (
+          //<p className="singlePostBody">{postbody}</p>
+          <div>
+            <br />
+            {parse(postbody)}  
+          </div>
         )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
             Update
           </button>
         )}
+        {/* // test - here is where you would insert the additional blog content. */}
+        <br />
+        
+        {/* // test */}
       </div>
     </div>
   );

@@ -25,8 +25,8 @@ export default function Register() {
   };
   return (
     <div className="register">
-      <span className="registerTitle">Register</span>
-      <form className="registerForm" onSubmit={handleSubmit}>
+      <span className="registerTitle">Register Option Not Available</span>
+      {/* <form className="registerForm" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
           type="text"
@@ -51,7 +51,7 @@ export default function Register() {
         <button className="registerButton" type="submit">
           Register
         </button>
-      </form>
+      </form> */}
       <button className="registerLoginButton">
         <Link className="link" to="/login">
           Login

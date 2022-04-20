@@ -29,9 +29,11 @@
   text-align: center;
 }
 
-.sidebarImage {
+.sidebarImg {
   width: 80%;
-  margin: 15px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .sidebarItem > p {

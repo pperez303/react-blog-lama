@@ -15,6 +15,9 @@ export default function Write() {
       username: user.username,
       title,
       desc,
+      // test postbody
+      postbody: "",
+      // test postbody
     };
     if (file) {
       const data =new FormData();
@@ -62,6 +65,9 @@ export default function Write() {
             className="writeInput writeText"
             onChange={e=>setDesc(e.target.value)}
           ></textarea>
+          <div>
+
+          </div>
         </div>
         <button className="writeSubmit" type="submit">
           Publish

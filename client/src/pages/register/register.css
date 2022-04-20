@@ -50,14 +50,14 @@
   padding: 10px;
 }
 
-.loginRegisterButton {
+.registerLoginButton {
   position: absolute;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
   top: 60px;
   right: 20px;
   background-color: lightcoral;
-  color: white;
   cursor: pointer;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
 }

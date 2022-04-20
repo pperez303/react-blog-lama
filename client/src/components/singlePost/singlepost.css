@@ -71,7 +71,7 @@
 }
 
 .singlePostDesc::first-letter {
-  margin-left: 20px;
+  margin-left: 0px;
   font-size: 30px;
   font-weight: 600;
 }
@@ -96,4 +96,25 @@
   cursor: pointer;
   align-self: flex-end;
   margin-top: 20px;
+}
+
+/* styling to the ckeditor div */
+
+
+/* styling for the ckeditor images.  the <img> tag is wrapped inside the <figure className="image" tag */
+.image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+img {
+  width: 50%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+
 }

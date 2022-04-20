@@ -27,7 +27,6 @@ function App() {
           element={user ? <Home /> : <Register />}
         />
         <Route exact path="/write" element={user ? <Write /> : <Register />} />
-        {/* <Route path="/write">{user ? <Write /> : <Register />}</Route> */}
         <Route
           exact
           path="/settings"

@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
+// test ckeditor
+const ckloadRoute = require("./routes/ckloads");
+// test ckeditor
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
@@ -40,6 +43,9 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
+// for ckeditor testing
+app.use("/api/ckloads", ckloadRoute);
+// ckeditor testing
 
 // Start the server with port 5000
 app.listen("5000", () => {
