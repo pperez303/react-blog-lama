@@ -35,7 +35,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
-const db = mongoose.connection;
+const db = mongoose.connection;                                   // connect to mongoose
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("connected to Database"));
 
