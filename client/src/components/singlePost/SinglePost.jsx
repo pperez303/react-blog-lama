@@ -15,16 +15,17 @@ export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const PF = "http://localhost:5000/images/";
+  const PF = "http://localhost:8000/api/images/";
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  
   const [postbody, setPostBody] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await axios.get("/api/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -48,7 +49,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`/api/posts/${post._id}`, {
         username: user.username,
         title,
         desc,
@@ -135,7 +136,7 @@ export default function SinglePost() {
                 }}
                 data={postbody}
                 config={{
-                  ckfinder: { uploadUrl: "http://localhost:5000/api/ckloads/uploads" },
+                  ckfinder: { uploadUrl: "http://localhost:8000/api/ckloads/uploads" },
                   types: ['png', 'jpeg']
                 }}
                 onChange={handleCKeditorState}
